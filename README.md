@@ -60,4 +60,4 @@ Por fim, a aplicação estará disponível em `http://localhost:3000`
 
 
 ---
-Feito com 💜 &nbsp;by VivianneMiranda com a NLW da Rocketseat 👋🏻 &nbsp;
+Feito com 💜 &nbsp;by Vivianne Miranda com a NLW da Rocketseat 👋🏻 &nbsp;
