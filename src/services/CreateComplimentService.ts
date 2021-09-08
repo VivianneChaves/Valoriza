@@ -10,34 +10,37 @@ interface IComplimentRequest {
 }
 
 class CreateComplimentService {
-    async execute({ tag_id, user_sender, user_receiver, message }: IComplimentRequest) {
-        const complimentsRepositories = getCustomRepository(ComplimentsRepositories);
-        const usersRepository = getCustomRepository(UsersRepositories);
-
-
-        const userReceiverExists = await usersRepository.findOne(user_receiver);
+    async execute({
+        tag_id,
+        user_sender,
+        user_receiver,
+        message,
+    }: IComplimentRequest) {
+        const complimentsRepositories = getCustomRepository(
+            ComplimentsRepositories
+        );
+        const usersRepositories = getCustomRepository(UsersRepositories);
 
         if (user_sender === user_receiver) {
-            throw new Error("User Sender and User Receiver are the same");
+            throw new Error("Incorrect User Receiver");
         }
 
+        const userReceiverExists = await usersRepositories.findOne(user_receiver);
 
         if (!userReceiverExists) {
-            throw new Error("User Receiver does not exists");
+            throw new Error("User Receiver does not exists!");
         }
 
         const compliment = complimentsRepositories.create({
             tag_id,
             user_receiver,
             user_sender,
-            message
-
+            message,
         });
 
         await complimentsRepositories.save(compliment);
 
         return compliment;
-
     }
 }
 
